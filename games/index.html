@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Play experiments from the Yow Mill Fun Zone.">
+        <title>Yow Mill Arcade — The Fun Zone</title>
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Fonts: Inter & Playfair Display -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+        <!-- FontAwesome Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Tailwind Config -->
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ['Inter', 'sans-serif'],
+                            serif: ['Playfair Display', 'serif'],
+                        },
+                        colors: {
+                            emerald: {
+                                950: '#062013',
+                                900: '#0a2f1d',
+                                800: '#144c33',
+                                700: '#1b6444',
+                            },
+                            amber: {
+                                950: '#2c1a04',
+                                900: '#451a03',
+                                500: '#f59e0b',
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+        <style>
+            /* Custom smooth scrollbar */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #062013;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #1b6444;
+                border-radius: 4px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #d97706;
+            }
+            /* Glowing effects */
+            .glow-green {
+                box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.2);
+            }
+        </style>
+    </head>
+    <body class="bg-emerald-950 text-emerald-100 font-sans selection:bg-amber-500 selection:text-emerald-950 antialiased overflow-x-hidden">
+
+        <!-- NAVIGATION -->
+        <nav class="sticky top-0 z-50 bg-emerald-950/90 backdrop-blur-md border-b border-emerald-800/40 px-6 py-4 transition-all duration-300">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <a href="/" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-emerald-600 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        <i class="fa-solid fa-mug-hot text-emerald-950 text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-serif text-xl font-bold tracking-wider block text-white group-hover:text-amber-400 transition-colors">YOW MILL</span>
+                        <span class="text-xs tracking-widest text-emerald-400 uppercase font-medium">Tranquil Millism</span>
+                    </div>
+                </a>
+                
+                <!-- Desktop Nav Links -->
+                <div class="hidden lg:flex items-center gap-6 xl:gap-8">
+                    <a href="/" class="text-sm font-medium tracking-wide hover:text-amber-400 transition-colors flex items-center gap-1.5 text-white"><i class="fa-solid fa-house text-[10px]"></i> Home</a>
+                    <a href="/games" class="text-sm font-semibold tracking-wide text-amber-300 hover:text-amber-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-gamepad"></i> Mill Games</a>
+                    <a href="/gallery" class="text-sm font-semibold tracking-wide text-emerald-300 hover:text-amber-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-palette"></i> Mill Art Gallery</a>
+                    <a href="/#disciples" class="text-sm font-medium tracking-wide hover:text-amber-400 transition-colors">Join Disciples</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="https://discord.gg/invite" target="_blank" rel="noopener noreferrer" class="bg-amber-500 hover:bg-amber-400 text-emerald-950 text-xs font-bold px-3.5 py-2 rounded-lg shadow-md hover:shadow-amber-500/20 transition-all flex items-center gap-1.5">
+                        <i class="fa-brands fa-discord"></i> Discord
+                    </a>
+                    <!-- Mobile menu toggle -->
+                    <button onclick="toggleMobileMenu()" class="lg:hidden text-white hover:text-amber-400 transition-colors">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden mt-4 pt-4 border-t border-emerald-900 flex flex-col gap-3">
+                <a href="/" onclick="toggleMobileMenu()" class="block text-sm p-2 rounded hover:bg-emerald-900 transition-colors text-white"><i class="fa-solid fa-house mr-2"></i> Home</a>
+                <a href="/games" onclick="toggleMobileMenu()" class="block text-sm p-2 rounded bg-emerald-900/40 text-amber-300 transition-colors font-semibold"><i class="fa-solid fa-gamepad mr-2"></i> Mill Games</a>
+                <a href="/gallery" onclick="toggleMobileMenu()" class="block text-sm p-2 rounded bg-emerald-900/40 text-emerald-300 transition-colors font-semibold"><i class="fa-solid fa-palette mr-2"></i> Mill Art Gallery</a>
+                <a href="/#disciples" onclick="toggleMobileMenu()" class="block text-sm p-2 rounded hover:bg-emerald-900 transition-colors">Join Disciples</a>
+            </div>
+        </nav>
+
+        <main class="py-20 px-6 relative">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-500/5 via-transparent to-transparent pointer-events-none"></div>
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-amber-400">The Fun Zone</span>
+                    <h1 class="font-serif text-4xl md:text-6xl font-bold text-white mt-2 tracking-tight">Mill Arcade</h1>
+                    <p class="text-emerald-300 mt-4 text-sm md:text-lg font-light leading-relaxed">Play experiments from the Yow Mill Fun Zone. More games arriving soon in the eternal brew.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- MillSnake Card -->
+                    <a href="/games/millsnake/index.html" class="group bg-emerald-950 border border-emerald-800/60 hover:border-amber-500/50 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5 flex flex-col glow-green relative overflow-hidden">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-900/80 flex items-center justify-center text-amber-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-worm text-2xl"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">MillSnake</h3>
+                        <p class="text-xs tracking-wider text-emerald-400 font-semibold uppercase mb-4">Classic Arcade</p>
+                        <p class="text-emerald-300/80 text-sm font-light leading-relaxed mb-6">Classic snake with upgrades and multipliers. Master the art of the slither in the digital garden.</p>
+                        <div class="mt-auto pt-4 border-t border-emerald-900 flex items-center justify-between text-sm text-amber-400 font-bold">
+                            <span>Play Now</span>
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </a>
+                    <!-- Card collecting game Card -->
+                    <a href="/games/cardCollection/index.html" class="group bg-emerald-950 border border-emerald-800/60 hover:border-amber-500/50 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5 flex flex-col glow-green relative overflow-hidden">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-900/80 flex items-center justify-center text-amber-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-clone text-2xl"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">Card collecting game</h3>
+                        <p class="text-xs tracking-wider text-emerald-400 font-semibold uppercase mb-4">Collection Strategy</p>
+                        <p class="text-emerald-300/80 text-sm font-light leading-relaxed mb-6">Build your streak and grow your collection. Discover rare relics of Millism through play.</p>
+                        <div class="mt-auto pt-4 border-t border-emerald-900 flex items-center justify-between text-sm text-amber-400 font-bold">
+                            <span>Open Packs</span>
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-emerald-950 border-t border-emerald-900 py-12 px-6">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center">
+                        <i class="fa-solid fa-mug-hot text-emerald-950 text-sm"></i>
+                    </div>
+                    <span class="font-serif text-lg font-bold text-white">Yow Mill</span>
+                </div>
+                <p class="text-[11px] text-emerald-400 text-center md:text-right font-light">© 2026 Yow Mill Arcade • All rights to tranquil brews are reserved.</p>
+            </div>
+        </footer>
+
+        <script>
+            function toggleMobileMenu() {
+                const menu = document.getElementById('mobile-menu');
+                menu.classList.toggle('hidden');
+            }
+        </script>
+    </body>
+</html>

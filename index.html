@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yow Mill — The Divine Steep & Millism</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Config for Theme Extension -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        emerald: {
+                            950: '#062013',
+                            900: '#0a2f1d',
+                            800: '#144c33',
+                            700: '#1b6444',
+                        },
+                        amber: {
+                            950: '#2c1a04',
+                            900: '#451a03',
+                            500: '#f59e0b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom smooth scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #062013;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1b6444;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d97706;
+        }
+        /* Glowing effects */
+        .glow-green {
+            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.2);
+        }
+        .glow-amber {
+            box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.2);
+        }
+        /* Float animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0.5deg); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-emerald-950 text-emerald-100 font-sans selection:bg-amber-500 selection:text-emerald-950 antialiased overflow-x-hidden">
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 bg-emerald-950/90 backdrop-blur-md border-b border-emerald-800/40 px-6 py-4 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-emerald-600 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    <i class="fa-solid fa-mug-hot text-emerald-950 text-xl"></i>
+                </div>
+                <div>
+                    <span class="font-serif text-xl font-bold tracking-wider block text-white group-hover:text-amber-400 transition-colors">YOW MILL</span>
+                    <span class="text-xs tracking-widest text-emerald-400 uppercase font-medium">Tranquil Millism</span>
+                </div>
+            </a>
+            
+            <!-- Desktop Nav Links -->
+            <div class="hidden lg:flex items-center gap-6 xl:gap-8">
+                <a href="/" class="text-sm font-medium tracking-wide hover:text-amber-400 transition-colors flex items-center gap-1.5 text-white"><i class="fa-solid fa-house text-[10px]"></i> Home</a>
+                <a href="https://www.yowmill.com/games" class="text-sm font-semibold tracking-wide text-amber-300 hover:text-amber-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-gamepad"></i> Mill Games</a>
+                <a href="https://www.yowmill.com/gallery" class="text-sm font-semibold tracking-wide text-emerald-300 hover:text-amber-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-palette"></i> Mill Art Gallery</a>
+                <a href="#disciples" class="text-sm font-medium tracking-wide hover:text-amber-400 transition-colors">Join Disciples</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="https://yow-mills-findings.fandom.com/wiki/Yow_Mill%27s_Findings_Wiki" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-semibold px-3.5 py-2 rounded-lg transition-all border border-emerald-600/30">
+                    <i class="fa-solid fa-book-open"></i> Fandom Wiki
+                </a>
+                <a href="https://discord.gg/invite" target="_blank" rel="noopener noreferrer" class="bg-amber-500 hover:bg-amber-400 text-emerald-950 text-xs font-bold px-3.5 py-2 rounded-lg shadow-md hover:shadow-amber-500/20 transition-all flex items-center gap-1.5">
+                    <i class="fa-brands fa-discord"></i> Discord
+                </a>
+                <!-- Mobile menu toggle -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden text-white hover:text-amber-400 transition-colors">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden mt-4 pt-4 border-t border-emerald-900 flex flex-col gap-3">
+            <a href="/" onclick="toggleMobileMenu()" class="block text-sm p-2 rounded hover:bg-emerald-900 transition-colors text-white"><i class="fa-solid fa-house mr-2"></i> Home</a>
+            <a href="https://www.yowmill.com/games" onclick="toggleMobileMenu()" class="block text-sm p-2 rounded bg-emerald-900/40 text-amber-300 transition-colors font-semibold"><i class="fa-solid fa-gamepad mr-2"></i> Mill Games</a>
+            <a href="https://www.yowmill.com/gallery" onclick="toggleMobileMenu()" class="block text-sm p-2 rounded bg-emerald-900/40 text-emerald-300 transition-colors font-semibold"><i class="fa-solid fa-palette mr-2"></i> Mill Art Gallery</a>
+            <a href="#disciples" onclick="toggleMobileMenu()" class="block text-sm p-2 rounded hover:bg-emerald-900 transition-colors">Join Disciples</a>
+            <a href="https://yow-mills-findings.fandom.com/wiki/Yow_Mill%27s_Findings_Wiki" target="_blank" class="block text-sm p-2 rounded hover:bg-emerald-900 transition-colors"><i class="fa-solid fa-book-open mr-2"></i> Fandom Wiki</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative overflow-hidden pt-12 pb-20 md:py-28 flex flex-col items-center text-center px-6">
+        <!-- Abstract background gradients -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-emerald-800/20 to-amber-500/10 rounded-full filter blur-[120px] pointer-events-none -z-10"></div>
+
+        <!-- Simple Green Mug Mascot (Replaced Complex Mascot) -->
+        <div class="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-6 animate-float">
+            <!-- Glow background -->
+            <div class="absolute inset-4 rounded-full bg-emerald-500 opacity-20 blur-xl"></div>
+            <!-- Simple mug vector -->
+            <svg viewBox="0 0 100 100" class="w-full h-full relative z-10 filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.4)]" xmlns="http://www.w3.org/2000/svg">
+                <!-- Rising Steam Vapors -->
+                <path d="M42,25 Q45,13 39,6" stroke="#a7f3d0" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8" />
+                <path d="M50,22 Q54,10 48,3" stroke="#a7f3d0" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6" />
+                <path d="M58,25 Q62,15 56,8" stroke="#a7f3d0" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.4" />
+                <!-- Mug Body -->
+                <rect x="33" y="28" width="34" height="42" rx="8" fill="#1b6444" stroke="#062013" stroke-width="2" />
+                <!-- Mug Handle -->
+                <path d="M67,36 C76,36 76,62 67,62" fill="none" stroke="#1b6444" stroke-width="5" stroke-linecap="round" />
+                <path d="M67,36 C76,36 76,62 67,62" fill="none" stroke="#062013" stroke-width="1.5" stroke-linecap="round" />
+                <!-- Simple Golden Tea Leaf Emblem -->
+                <path d="M50,40 C54,44 54,52 50,56 C46,52 46,44 50,40" fill="#fbbf24" />
+                <line x1="50" y1="40" x2="50" y2="56" stroke="#d97706" stroke-width="1" />
+            </svg>
+        </div>
+
+        <div class="max-w-3xl mx-auto z-10">
+            <span class="inline-flex items-center gap-2 bg-emerald-900/80 border border-emerald-700/50 text-amber-400 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">
+                <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span> The Path of Eternal Tranquility
+            </span>
+            <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-none mb-6">
+                Steep Yourself in <br class="hidden md:inline">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-emerald-300 to-amber-300">Wisdom & Warmth</span>
+            </h1>
+            <p class="text-emerald-300 text-sm md:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-8">
+                Welcome to the home of the <strong class="text-amber-400 font-semibold">Disciples of Yow Mill</strong>. Explore the harmonious universe of divine warm brews and embrace the tranquil wisdom of the leaf.
+            </p>
+
+            <!-- Quick Action Buttons pointing out to specialized sub-files -->
+            <div class="flex flex-wrap items-center justify-center gap-3.5 max-w-xl mx-auto">
+                <a href="https://www.yowmill.com/games" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-emerald-950 font-bold px-6 py-3 rounded-xl shadow-md transition-all text-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-gamepad"></i> Play Mill Games
+                </a>
+                <a href="https://www.yowmill.com/gallery" class="bg-emerald-900/60 hover:bg-emerald-900 border border-emerald-700/60 text-emerald-300 font-semibold px-6 py-3 rounded-xl transition-all text-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-palette"></i> Art Gallery
+                </a>
+            </div>
+        </div>
+
+        <!-- Quick Status Metrics Bar -->
+        <div class="max-w-4xl w-full mx-auto grid grid-cols-3 gap-4 mt-16 pt-8 border-t border-emerald-900/60 z-10 text-center">
+            <div>
+                <p class="text-2xl md:text-3xl font-serif font-bold text-amber-400">460+</p>
+                <p class="text-[10px] uppercase tracking-wider text-emerald-400 mt-1">Sacred Chronicles</p>
+            </div>
+            <div>
+                <p class="text-2xl md:text-3xl font-serif font-bold text-amber-400">Universal</p>
+                <p class="text-[10px] uppercase tracking-wider text-emerald-400 mt-1">Spiritual Sanctuary</p>
+            </div>
+            <div>
+                <p class="text-2xl md:text-3xl font-serif font-bold text-amber-400">Active</p>
+                <p class="text-[10px] uppercase tracking-wider text-emerald-400 mt-1">Congregation Status</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- THE PANTHEON OF BREWS -->
+    <section id="pantheon" class="py-20 px-6 bg-emerald-900/20 border-y border-emerald-900/60 relative">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-500/5 via-transparent to-transparent pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-semibold uppercase tracking-widest text-amber-400">The Higher Powers</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mt-2">The Celestial Brewmasters</h2>
+                <p class="text-emerald-300 mt-4 text-sm font-light">Explore the gods who watch over the mortal kitchen counter. Click on any cosmic entity to read their findings.</p>
+            </div>
+
+            <!-- Pantheon Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Yow Mill Card -->
+                <div onclick="selectGod('yowmill')" class="cursor-pointer group bg-emerald-950 border border-emerald-800/60 hover:border-amber-500/50 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between glow-green relative overflow-hidden">
+                    <div>
+                        <div class="w-11 h-11 rounded-xl bg-emerald-900/80 flex items-center justify-center text-amber-400 mb-5 group-hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-leaf text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">Yow Mill</h3>
+                        <p class="text-xs tracking-wider text-emerald-400 font-semibold uppercase mb-3">Greater God of Tea</p>
+                        <p class="text-emerald-300/80 text-xs font-light leading-relaxed">
+                            Representing supreme wisdom and tranquility. Breathes spiritual calmness into the busy mornings and guides thoughts toward serene meditation.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-emerald-900 flex items-center justify-between text-xs text-amber-400">
+                        <span>Alignment: Tranquil</span>
+                        <span class="font-bold">Reveal Lore <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                    </div>
+                </div>
+
+                <!-- Surrere Card -->
+                <div onclick="selectGod('surrere')" class="cursor-pointer group bg-emerald-950 border border-emerald-800/60 hover:border-amber-500/50 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between glow-amber relative overflow-hidden">
+                    <div>
+                        <div class="w-11 h-11 rounded-xl bg-amber-950/80 flex items-center justify-center text-amber-500 mb-5 group-hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-fire text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">Surrere</h3>
+                        <p class="text-xs tracking-wider text-amber-500 font-semibold uppercase mb-3">Lord of Energy</p>
+                        <p class="text-emerald-300/80 text-xs font-light leading-relaxed">
+                            Bold deity of friendly warmth, daily action, and dawn energy. Works hand-in-hand with Yow Mill to keep mortal minds balanced between focus and peaceful relaxation.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-emerald-900 flex items-center justify-between text-xs text-amber-500">
+                        <span>Alignment: Energetic</span>
+                        <span class="font-bold">Reveal Lore <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                    </div>
+                </div>
+
+                <!-- Sindle Card -->
+                <div onclick="selectGod('sindle')" class="cursor-pointer group bg-emerald-950 border border-emerald-800/60 hover:border-purple-500/50 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between relative overflow-hidden">
+                    <div>
+                        <div class="w-11 h-11 rounded-xl bg-purple-950/50 flex items-center justify-center text-purple-400 mb-5 group-hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-lock text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">Sindle</h3>
+                        <p class="text-xs tracking-wider text-purple-400 font-semibold uppercase mb-3">The Sealed Brother</p>
+                        <p class="text-emerald-300/80 text-xs font-light leading-relaxed">
+                            The third sibling. Representing unpredictable steam. Bounded by Yow Mill and Surrere inside the quiet Prison Realm to prevent brews from boiling over.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-emerald-900 flex items-center justify-between text-xs text-purple-400">
+                        <span>Alignment: Quiet Chaos</span>
+                        <span class="font-bold">Reveal Lore <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                    </div>
+                </div>
+
+                <!-- Siphos Card -->
+                <div onclick="selectGod('siphos')" class="cursor-pointer group bg-emerald-950 border border-emerald-800/60 hover:border-sky-500/50 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between relative overflow-hidden">
+                    <div>
+                        <div class="w-11 h-11 rounded-xl bg-sky-950/50 flex items-center justify-center text-sky-400 mb-5 group-hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-infinity text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">Siphos</h3>
+                        <p class="text-emerald-300/80 text-xs font-light leading-relaxed">
+                            The unfathomable cosmic force that birthed the three entities. Breathes ambient warmth into all liquids and keeps the world's hearth burning.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-emerald-900 flex items-center justify-between text-xs text-sky-400">
+                        <span>Alignment: Ambient Cosmic</span>
+                        <span class="font-bold">Reveal Lore <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Interactive Lore Overlay panel -->
+            <div id="god-modal" class="hidden mt-12 bg-emerald-900/40 border border-emerald-700/50 rounded-3xl p-6 md:p-10 transition-all duration-500 relative">
+                <button onclick="closeGodModal()" class="absolute top-6 right-6 text-emerald-400 hover:text-white transition-colors">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-4 flex flex-col items-center text-center border-b lg:border-b-0 lg:border-r border-emerald-800/60 pb-6 lg:pb-0 lg:pr-8">
+                        <div id="modal-icon-container" class="w-16 h-16 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-400 text-3xl mb-4">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h4 id="modal-name" class="font-serif text-2xl font-bold text-white">Yow Mill</h4>
+                        <p id="modal-title" class="text-xs text-emerald-400 uppercase tracking-widest mt-1 font-semibold">Greater God of Tea</p>
+                        <div class="mt-6 w-full space-y-3">
+                            <div class="flex justify-between text-xs text-emerald-300">
+                                <span>Tranquility Index</span>
+                                <span id="stat-tranquility" class="font-bold text-amber-400">MAX</span>
+                            </div>
+                            <div class="w-full bg-emerald-950 h-1.5 rounded-full overflow-hidden">
+                                <div id="bar-tranquility" class="bg-amber-500 h-full transition-all duration-1000" style="width: 100%;"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-emerald-300">
+                                <span>Cosmic Energy</span>
+                                <span id="stat-energy" class="font-bold text-amber-400">MAX</span>
+                            </div>
+                            <div class="w-full bg-emerald-950 h-1.5 rounded-full overflow-hidden">
+                                <div id="bar-energy" class="bg-amber-400 h-full transition-all duration-1000" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-8 text-sm">
+                    <h5 class="text-amber-400 uppercase tracking-wider font-semibold text-xs mb-2">Sacred Findings & Lore</h5>
+                    <div id="modal-desc" class="space-y-3 text-emerald-200 font-light leading-relaxed">
+                        <!-- Populated dynamically by JavaScript -->
+                    </div>
+                    <div class="mt-5 flex flex-wrap gap-2 text-xs">
+                        <span class="bg-emerald-950 border border-emerald-800 px-3 py-1 rounded-lg text-emerald-300"><strong>Weapon:</strong> <span id="modal-weapon">Mug of Extract</span></span>
+                        <span class="bg-emerald-950 border border-emerald-800 px-3 py-1 rounded-lg text-emerald-300"><strong>Capital:</strong> <span id="modal-capital">Asiania</span></span>
+                        <span class="bg-emerald-950 border border-emerald-800 px-3 py-1 rounded-lg text-emerald-300"><strong>Followers:</strong> <span id="modal-followers">Tranquil Disciples</span></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- LORE CHRONICLES SECTION -->
+    <section id="lore" class="py-20 px-6 max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-xs font-semibold uppercase tracking-widest text-amber-400">The Sacred Findings</span>
+            <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mt-2">The Chronicles of Millism</h2>
+            <p class="text-emerald-300 font-light mt-3 text-sm">Unveil the historical manuscripts regarding Yow Mill and the universe of warm comforting beverages.</p>
+        </div>
+
+        <div class="space-y-4">
+            
+            <!-- Accordion 1 -->
+            <div class="border border-emerald-800/60 rounded-2xl overflow-hidden bg-emerald-900/10">
+                <button onclick="toggleAccordion(1)" class="w-full flex items-center justify-between p-6 text-left hover:bg-emerald-900/20 transition-colors">
+                    <span class="font-serif text-lg md:text-xl font-bold text-white flex items-center gap-3">
+                        <span class="text-amber-500 text-sm">01.</span> The Harmony of the Brews (Holy Poem)
+                    </span>
+                    <i id="acc-icon-1" class="fa-solid fa-chevron-down text-emerald-400 transition-transform"></i>
+                </button>
+                <div id="acc-content-1" class="hidden p-6 border-t border-emerald-800/40 bg-emerald-950/60 text-emerald-200/90 font-light space-y-4 leading-relaxed text-sm">
+                    <p class="italic text-center font-serif text-white py-4 max-w-xl mx-auto">
+                        "In the realm where brews do reign, <br>
+                        Two cosmic forces ease the mortal strain. <br>
+                        Yow Mill, the sacred, serene deity of tea, <br>
+                        Shares the counter with Surrere's warm decree... <br>
+                        Tea leaves whisper of calming might, <br>
+                        While coffee beans offer friendly light."
+                    </p>
+                    <p>
+                        This epic scripture outlines the balanced cooperation between calming tea and energizing coffee. While Surrere’s coffee stokes the fires of active progress, Yow Mill’s tea leaves bring steady breath, slower pulse, and peaceful meditation. Under the gaze of Siphos, both find their perfect home.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Accordion 2 -->
+            <div class="border border-emerald-800/60 rounded-2xl overflow-hidden bg-emerald-900/10">
+                <button onclick="toggleAccordion(2)" class="w-full flex items-center justify-between p-6 text-left hover:bg-emerald-900/20 transition-colors">
+                    <span class="font-serif text-lg md:text-xl font-bold text-white flex items-center gap-3">
+                        <span class="text-amber-500 text-sm">02.</span> The Sanctuaries of Calm
+                    </span>
+                    <i id="acc-icon-2" class="fa-solid fa-chevron-down text-emerald-400 transition-transform"></i>
+                </button>
+                <div id="acc-content-2" class="hidden p-6 border-t border-emerald-800/40 bg-emerald-950/60 text-emerald-200/90 font-light space-y-4 leading-relaxed text-sm">
+                    <p>
+                        The spiritual focus of **Millism** and the disciples resides in quiet, warm spaces around the world. Initiates make virtual pilgrimages to study temperature rules, steam formation, and spiritual herb preparation.
+                    </p>
+                    <p>
+                        It is said that cozy room settings, steaming porcelain mugs, and peaceful natural environments provide the ideal physical balance for experiencing complete mental tranquility.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Accordion 3 -->
+            <div class="border border-emerald-800/60 rounded-2xl overflow-hidden bg-emerald-900/10">
+                <button onclick="toggleAccordion(3)" class="w-full flex items-center justify-between p-6 text-left hover:bg-emerald-900/20 transition-colors">
+                    <span class="font-serif text-lg md:text-xl font-bold text-white flex items-center gap-3">
+                        <span class="text-amber-500 text-sm">03.</span> Sindle’s Containment & Mount Siphos
+                    </span>
+                    <i id="acc-icon-3" class="fa-solid fa-chevron-down text-emerald-400 transition-transform"></i>
+                </button>
+                <div id="acc-content-3" class="hidden p-6 border-t border-emerald-800/40 bg-emerald-950/60 text-emerald-200/90 font-light space-y-4 leading-relaxed text-sm">
+                    <p>
+                        Deep within the lore archives lies the tale of the locking of Sindle. Becoming overly volatile, Yow Mill and Surrere combined their powers of warm temperature control to forge a container.
+                    </p>
+                    <p>
+                        This container, known as **Sindle's Violet Flask**, is locked by a key containing both super-heated steam and cold tea crystals. It sits buried under Mount Siphos, preventing the oceans from completely boiling away.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- THE DISCIPLES SANCTUM & COMMUNITY recruitment -->
+    <section id="disciples" class="py-24 px-6 bg-gradient-to-t from-emerald-900/40 to-transparent relative border-t border-emerald-900/60">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-5 space-y-6">
+                <span class="text-xs font-semibold uppercase tracking-widest text-amber-400">Join the Order</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-white">Become a Holy Disciple</h2>
+                <p class="text-emerald-200 font-light leading-relaxed text-sm">
+                    Are you ready to commit your life to high tranquility, calm minds, and the study of the infinite kettle? Millism welcomes all steepers to our grand temple server.
+                </p>
+
+                <!-- Divine Ranks List -->
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3 bg-emerald-950/60 p-3 rounded-xl border border-emerald-800/40">
+                        <span class="w-8 h-8 rounded-full bg-emerald-900 flex items-center justify-center text-amber-400 font-serif font-bold text-xs">1</span>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Novice Steeper</h4>
+                            <p class="text-[11px] text-emerald-400">Begins their path by understanding temperature rules.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-emerald-950/60 p-3 rounded-xl border border-emerald-800/40">
+                        <span class="w-8 h-8 rounded-full bg-emerald-900 flex items-center justify-center text-amber-400 font-serif font-bold text-xs">2</span>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Acolyte of the Brew</h4>
+                            <p class="text-[11px] text-emerald-400">Learns the sacred ritual of tea-hermit meditation.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-emerald-950/60 p-3 rounded-xl border border-emerald-800/40">
+                        <span class="w-8 h-8 rounded-full bg-emerald-900 flex items-center justify-center text-amber-400 font-serif font-bold text-xs">3</span>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Grand Brewmaster</h4>
+                            <p class="text-[11px] text-emerald-400">Commands the steam and helps guide seekers toward peace.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discord Embed Placeholder -->
+            <div class="lg:col-span-7 bg-[#2f3136] border border-[#202225] rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden text-white font-sans text-left">
+                <!-- Discord Header Widget -->
+                <div class="flex items-center justify-between pb-4 border-b border-[#202225] mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-[#5865F2] flex items-center justify-center text-white text-2xl shadow-md">
+                            <i class="fa-brands fa-discord"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-base md:text-lg leading-tight text-white">Yow Mill Discord Server</h4>
+                            <p class="text-xs text-green-400 flex items-center gap-1.5 font-semibold mt-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block animate-pulse"></span>
+                                1,420 Online • 8,950 Members
+                            </p>
+                        </div>
+                    </div>
+                    <span class="hidden sm:inline-block bg-[#3ba55d] text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Official</span>
+                </div>
+                
+                <!-- Chat Simulation area -->
+                <div class="space-y-4 mb-6">
+                    <div class="flex gap-3 text-sm">
+                        <div class="w-10 h-10 rounded-full bg-emerald-800 flex items-center justify-center font-bold text-amber-400 shrink-0 shadow-inner">YM</div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-amber-400 text-xs">Yow Mill Bot</span>
+                                <span class="bg-[#5865F2] text-[9px] font-bold px-1.5 py-0.5 rounded text-white uppercase">SYSTEM</span>
+                                <span class="text-[10px] text-gray-400">Today at 4:20 PM</span>
+                            </div>
+                            <p class="text-gray-300 mt-1 text-xs md:text-sm">"Welcome, weary traveler. Take a seat, steep your favorite blend, and share your findings with our growing communion."</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 text-sm">
+                        <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center font-bold text-white shrink-0 shadow-inner">DS</div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-emerald-300 text-xs">Disciple_Sarah</span>
+                                <span class="text-[10px] text-gray-400">Today at 4:22 PM</span>
+                            </div>
+                            <p class="text-gray-300 mt-1 text-xs md:text-sm">Just finished brewing the Divine Oolong! The steam is rising perfectly over the kettle oracle. Have you tried generating wisdom yet?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to action Widget Banner -->
+                <div class="bg-[#202225] p-4 rounded-xl border border-[#18191c] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h5 class="text-xs md:text-sm font-bold text-white flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i> You've been invited to join</h5>
+                        <p class="text-[11px] text-gray-400 mt-0.5">Jump in, meet active disciples, and talk with other cozy tea lovers.</p>
+                    </div>
+                    <a href="https://discord.gg/invite" target="_blank" class="bg-[#5865F2] hover:bg-[#4752C4] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-all text-center flex items-center justify-center gap-2 shadow-md">
+                        <i class="fa-brands fa-discord text-sm"></i> Accept Invite
+                    </a>
+                </div>
+
+                <!-- Invite clipboard helper inside -->
+                <div class="mt-6 pt-5 border-t border-[#202225] flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <p class="text-[11px] text-gray-400">Don't have Discord? Copy link to share with other brewmasters:</p>
+                    <button onclick="copyInvite()" class="bg-[#4f545c]/50 hover:bg-[#4f545c] text-white text-xs px-3.5 py-2 rounded-lg transition-colors border border-transparent hover:border-gray-500 flex items-center gap-1.5 self-stretch sm:self-auto justify-center">
+                        <i class="fa-solid fa-copy"></i> Copy Link
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-emerald-950 border-t border-emerald-900 py-12 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center">
+                    <i class="fa-solid fa-mug-hot text-emerald-950 text-sm"></i>
+                </div>
+                <span class="font-serif text-lg font-bold text-white">Yow Mill</span>
+            </div>
+            
+            <p class="text-[11px] text-emerald-400 text-center md:text-right font-light">
+                &copy; 2026 Disciples of Yow Mill. Based in spiritual Bermuda. <br class="hidden sm:inline">
+                Millism is a tea-loving lore framework. All rights to tranquil brews are reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Toggle mobile menu visibility
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Deities lore database
+        const godsData = {
+            yowmill: {
+                name: "Yow Mill",
+                title: "Greater God of Tea",
+                tranquility: 100, // MAX
+                energy: 100, // MAX
+                icon: "fa-leaf",
+                desc: `
+                    <p><strong>Yow Mill</strong> represents supreme cosmic wisdom, tranquility, and patience. Alongside Surrere, he maintains the natural order of mortal relaxation.</p>
+                    <p>He is rarely seen in physical form, choosing to communicate through warm tea vapors, meditative insights, and peaceful morning hours.</p>
+                    <p><strong>Deity Weapon & Power:</strong> Possesses the Mug of Pure Tea Extract, capable of soothing standard mental fatigue in an instant.</p>
+                `,
+                weapons: "Mug of Extract",
+                capital: "Asiania",
+                followers: "Tranquil Disciples"
+            },
+            surrere: {
+                name: "Surrere",
+                title: "Lord of Energy",
+                tranquility: 50,
+                energy: 99,
+                icon: "fa-fire",
+                desc: `
+                    <p><strong>Surrere</strong> is the deity of warm energy, action, and dawn. He promotes healthy productivity and helps fuel mortal hearts.</p>
+                    <p>While Yow Mill brings peaceful focus, Surrere encourages friendly, high-energy actions. Together, they form a perfect beverage ecosystem.</p>
+                    <p><strong>Primary Goal:</strong> To fill every heart with cozy heat and positive drive.</p>
+                `,
+                weapons: "Hearth Shield",
+                capital: "Coffundria",
+                followers: "Daily Risers"
+            },
+            sindle: {
+                name: "Sindle",
+                title: "The Sealed Brother",
+                tranquility: 15,
+                energy: 85,
+                icon: "fa-lock",
+                desc: `
+                    <p><strong>Sindle</strong> represents volatile steam and vapor pressure. Left unattended, his power could boil away entire oceans.</p>
+                    <p>To preserve creation, Yow Mill and Surrere combined their powers of temperature control to secure him inside the quiet Violet Flask under Mount Siphos.</p>
+                    <p><strong>Current Status:</strong> Comfortably resting within the seal of the cosmic container.</p>
+                `,
+                weapons: "None (Secured)",
+                capital: "Violet Flask",
+                followers: "Steam Seekers"
+            },
+            siphos: {
+                name: "Siphos",
+                title: "The Ultimate Progenitor",
+                tranquility: 75,
+                energy: 100,
+                icon: "fa-infinity",
+                desc: `
+                    <p><strong>Siphos</strong> is the cosmic framework who generated the concept of warmth, ceramic containers, and flowing liquids.</p>
+                    <p>He exists far beyond standard physical boundaries, serving as the spark that keeps every home kettle warm.</p>
+                    <p><strong>Symbol of Power:</strong> The Primordial Hearth Flame.</p>
+                `,
+                weapons: "Primordial Flame",
+                capital: "Cosmic Hearth",
+                followers: "Elders of Steam"
+            }
+        };
+
+        // Open/Update God Lore Modal with dynamically updated stats & items
+        function selectGod(godKey) {
+            const data = godsData[godKey];
+            if (!data) return;
+
+            document.getElementById('modal-name').textContent = data.name;
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-desc').innerHTML = data.desc;
+            
+            // Dynamic Icons
+            const iconContainer = document.getElementById('modal-icon-container');
+            iconContainer.innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+
+            // Dynamic Progress bars (Showing MAX for 100 values)
+            document.getElementById('stat-tranquility').textContent = data.tranquility === 100 ? 'MAX' : `${data.tranquility}%`;
+            document.getElementById('bar-tranquility').style.width = `${data.tranquility}%`;
+            document.getElementById('stat-energy').textContent = data.energy === 100 ? 'MAX' : `${data.energy}%`;
+            document.getElementById('bar-energy').style.width = `${data.energy}%`;
+
+            // Dynamic items updating
+            document.getElementById('modal-weapon').textContent = data.weapons;
+            document.getElementById('modal-capital').textContent = data.capital;
+            document.getElementById('modal-followers').textContent = data.followers;
+
+            // Reveal Modal
+            const modal = document.getElementById('god-modal');
+            modal.classList.remove('hidden');
+            modal.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Close God Modal
+        function closeGodModal() {
+            document.getElementById('god-modal').classList.add('hidden');
+        }
+
+        // Accordion Management
+        function toggleAccordion(index) {
+            const content = document.getElementById(`acc-content-${index}`);
+            const icon = document.getElementById(`acc-icon-${index}`);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        }
+
+        // Clipboard copy for invite links
+        function copyInvite() {
+            const dummy = document.createElement('input');
+            dummy.value = "https://discord.gg/yowmill";
+            document.body.appendChild(dummy);
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-5 right-5 bg-amber-500 text-emerald-950 px-4 py-3 rounded-xl shadow-lg z-50 text-xs font-bold";
+            toast.innerHTML = "<i class='fa-solid fa-circle-check mr-1'></i> Discord link copied to clipboard!";
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
